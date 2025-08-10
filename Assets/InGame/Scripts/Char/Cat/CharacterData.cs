@@ -31,6 +31,9 @@ public class CharacterData : MonoBehaviour
     public int skill1Number;
     public int skill2Number;
     public int skill3Number;
+    public int skill1Lv;
+    public int skill2Lv;
+    public int skill3Lv;
 
     private int expI = 0;
     private int spLvI = 0;
@@ -96,6 +99,8 @@ public class CharacterData : MonoBehaviour
             case 3: Skill3_3(); break;
         }
     }
+
+    //public void 
 
     protected virtual void StatisticsUp()
     {

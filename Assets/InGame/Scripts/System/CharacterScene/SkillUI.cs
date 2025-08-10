@@ -6,6 +6,11 @@ public class SkillUI : MonoBehaviour
 {
     [SerializeField] private GameObject ReinforceUI;
 
+    public void ShowUI()
+    {
+        ReinforceUI.SetActive(true);
+    }
+
     public void UpgradeSkill()
     {
         ReinforceUI.SetActive(false);

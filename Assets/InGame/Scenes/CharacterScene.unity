@@ -1038,7 +1038,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 310824494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1554364120}
+        m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &310824494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,6 +2076,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585468761}
   m_CullTransparentMesh: 1
+--- !u!1001 &607567373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 614724940833611653, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: ID_Master
+      value: Mabrium7
+      objectReference: {fileID: 0}
+    - target: {fileID: 614724940833611653, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: PW_Master
+      value: 1234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578759791400895996, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682065485927106935, guid: 63e984dd82d3a9c479ceccf647c3fe45,
+        type: 3}
+      propertyPath: m_Name
+      value: Testing Master Object
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63e984dd82d3a9c479ceccf647c3fe45, type: 3}
 --- !u!1 &653207273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,8 +2705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed815b6e214529b46aa5f3a601749160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillUI: {fileID: 1554364116}
   characterDataSTO: {fileID: 11400000, guid: 42205dd43079d464f817392383aeb488, type: 2}
+  skillTextSTO: {fileID: 11400000, guid: 8b1849e12cda0f249b6604cb35433db5, type: 2}
   tmp:
   - {fileID: 954074698}
   - {fileID: 2096246419}
@@ -2938,10 +3028,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 950274320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1f8c585a95d9d41a20578722cd68f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7885abe10fc867742a4bcdf0cfd67779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReinforceUI: {fileID: 0}
 --- !u!1 &950477146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4286,7 +4375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -875, y: 465}
+  m_AnchoredPosition: {x: -850, y: 440}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324946783
@@ -5723,7 +5812,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1708020369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1554364120}
+        m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1708020369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6114,7 +6215,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1962930022}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1554364120}
+        m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1962930022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6170,7 +6283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1983437366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6894,3 +7007,4 @@ SceneRoots:
   - {fileID: 1466761217}
   - {fileID: 1126965744}
   - {fileID: 950274321}
+  - {fileID: 607567373}

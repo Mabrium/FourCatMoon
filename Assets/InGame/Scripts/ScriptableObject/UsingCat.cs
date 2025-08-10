@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UsingCatData", menuName = "CatData/Cat", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "UsingCatData", menuName = "CatData/Cat", order = int.MinValue)]
 public class UsingCat : ScriptableObject
 {
     public int NUMBER;

@@ -10,6 +10,8 @@ public static class FirebaseString
     public const string PlayerID = "PlayerID";
     public const string Profile = "Profile";
     public const string Characters = "Characters";
+    public const string DBCharacterSkill = "DBCharacterSkill";
+    public const string DBCharacterSkillExplain = "DBCharacterSkillExplain";
     #endregion
 
     #region 데이터 이름
@@ -25,9 +27,16 @@ public static class FirebaseString
     public const string DEF = "DEF";
     public const string MAXHP = "MAXHP";
     public const string SPEED = "SPEED";
+
     public const string SKILL1NUMBER = "SKILL1NUMBER";
     public const string SKILL2NUMBER = "SKILL2NUMBER";
     public const string SKILL3NUMBER = "SKILL3NUMBER";
+    public const string SKILL1EXPLAIN = "SKILL1EXPLAIN";
+    public const string SKILL2EXPLAIN = "SKILL2EXPLAIN";
+    public const string SKILL3EXPLAIN = "SKILL3EXPLAIN";
+    public const string SKILL1LV = "SKILL1LV";
+    public const string SKILL2LV = "SKILL2LV";
+    public const string SKILL3LV = "SKILL3LV";
     #endregion
 
     #region 캐릭터(고양이)

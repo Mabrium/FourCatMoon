@@ -12,6 +12,7 @@ public class LoadCharacterData : MonoBehaviour
     private FirebaseFirestore db;
     private DocumentReference doRef;
     [SerializeField] private UsingCat characterDataSTO;
+    [SerializeField] private SkillText skillTextSTO;
 
     [SerializeField] private TextMeshProUGUI[] tmp;
     //[SerializeField] private string patName;
