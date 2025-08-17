@@ -40,7 +40,8 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
     public CatType catType;
     public SkillNumber skillNumber;
 
-    void Start()
+
+    public void UpdateSkillExplain()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
         docRef = db.Collection(FirebaseString.DBCharacterSkill).Document(catType.ToString()).Collection(FirebaseString.DBCharacterSkillExplain).Document(skillNumber.ToString());
@@ -48,7 +49,7 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
         {
             {FirebaseString.SKILL1EXPLAIN, skillExplainText }
         };
-        docRef.SetAsync(SkillData).ContinueWithOnMainThread(task =>{ });
+        docRef.SetAsync(SkillData).ContinueWithOnMainThread(task => { });
         Debug.Log(FirebaseString.DBCharacterSkill + "\n" + catType.ToString() + "\n" + FirebaseString.DBCharacterSkillExplain + "\n" + skillNumber.ToString());
         Debug.Log(skillExplainText);
     }

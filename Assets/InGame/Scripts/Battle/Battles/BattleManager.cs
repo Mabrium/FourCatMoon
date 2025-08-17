@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    public BattleStat[] battleStats = new BattleStat[2];
+    public BattleCat[] battleCats = new BattleCat[2];
     void Start()
     {
-        
+        TurnManager();
     }
 
     void Update()
@@ -17,18 +17,23 @@ public class BattleManager : MonoBehaviour
 
     public void TurnManager()
     {
-        if (battleStats[0].turnSpeed > battleStats[1].turnSpeed)
+        if (battleCats[0].turnSpeed > battleCats[1].turnSpeed)
         {
-            battleStats[0].MyTurnStart();
+            battleCats[0].MyTurnStart();
         }
-        else if (battleStats[0].turnSpeed < battleStats[1].turnSpeed)
+        else if (battleCats[0].turnSpeed < battleCats[1].turnSpeed)
         {
-            battleStats[1].MyTurnStart();
+            battleCats[1].MyTurnStart();
         }
-        else if (battleStats[0].turnSpeed == battleStats[1].turnSpeed)
+        else if (battleCats[0].turnSpeed == battleCats[1].turnSpeed)
         {
             int rand = Random.Range(0, 2);
-            battleStats[rand].MyTurnStart();
+            battleCats[rand].MyTurnStart();
         }
+    }
+
+    public void SkillNameUpdate()
+    {
+
     }
 }

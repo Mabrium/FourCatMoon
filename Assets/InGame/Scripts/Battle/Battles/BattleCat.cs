@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BattleStat : MonoBehaviour
+public class BattleCat : MonoBehaviour
 {
     public float turnSpeed;
 
@@ -27,5 +27,15 @@ public class BattleStat : MonoBehaviour
         tmpUGUI[1].text = charData.def.ToString();
         tmpUGUI[2].text = charData.maxHp.ToString();
         tmpUGUI[3].text = charData.speed.ToString();
+    }
+
+    public void TakeDamage()
+    {
+
+    }
+
+    public void UseSkill()
+    {
+
     }
 }
