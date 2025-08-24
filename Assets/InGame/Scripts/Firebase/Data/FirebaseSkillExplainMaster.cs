@@ -11,8 +11,6 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
     private FirebaseFirestore db;
     private DocumentReference docRef;
 
-    public string skillExplainText;
-
     public enum CatType
     {
         FirstQuarterCat,
@@ -37,9 +35,11 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
         Skill3
     }
 
+
     public CatType catType;
     public SkillNumber skillNumber;
 
+    public string skillExplainText;
 
     public void UpdateSkillExplain()
     {

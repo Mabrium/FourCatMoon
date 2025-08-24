@@ -1367,6 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 615657217}
   - component: {fileID: 615657218}
+  - component: {fileID: 615657219}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1401,6 +1402,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af54b14f1b0d5274b8aa0e28a94c5600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &615657219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615657216}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d799f4d3f7a51ee4a96998d232ef1467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleCats:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &692061926
 GameObject:
   m_ObjectHideFlags: 0

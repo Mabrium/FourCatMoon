@@ -5,8 +5,11 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     public BattleCat[] battleCats = new BattleCat[2];
+
+
     void Start()
     {
+
         TurnManager();
     }
 

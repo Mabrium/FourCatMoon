@@ -21,7 +21,17 @@ public class CharacterData : MonoBehaviour
 
     [Header("Statistics")]
     [SerializeField] private int level = 1;
+    public int showLevel
+    {
+        get => level;
+        set => level = value;
+    }
     [SerializeField] private int exp;
+    public int showExp
+    {
+        get => exp;
+        set => exp = value;
+    }
     public int atk;
     public int def;
     public int maxHp;
