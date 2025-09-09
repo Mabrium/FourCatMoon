@@ -202,35 +202,41 @@ public class CharacterData : MonoBehaviour
         {
             {FirebaseString.SKILL1NUMBER, skill1Number},
             {FirebaseString.SKILL2NUMBER, skill2Number},
-            {FirebaseString.SKILL3NUMBER, skill3Number}
+            {FirebaseString.SKILL3NUMBER, skill3Number},
+            {FirebaseString.SKILL1LV, skill1Lv},
+            {FirebaseString.SKILL2LV, skill2Lv},
+            {FirebaseString.SKILL3LV, skill3Lv}
         };
         docRef.SetAsync(characterSkill).ContinueWithOnMainThread(task => { });
     }
 
-    public void DataLoad()
-    {
-        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Data");
-        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
-        {
-            var snapshot = task.Result;
-            var Data = snapshot.ToDictionary();
-            level = TUtil.GetValue<int>(Data, FirebaseString.LEVEL);
-            exp = TUtil.GetValue<int>(Data, FirebaseString.EXP);
-            skillPoint = TUtil.GetValue<int>(Data, FirebaseString.SKILLPOINT);
-            atk = TUtil.GetValue<int>(Data, FirebaseString.ATK);
-            def = TUtil.GetValue<int> (Data, FirebaseString.DEF);
-            maxHp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
-            speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
-        });
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
-        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
-        {
-            var snapshot = task.Result;
-            var Data = snapshot.ToDictionary();
-            skill1Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL1NUMBER);
-            skill2Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL2NUMBER);
-            skill3Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL3NUMBER);
-        });
-    }
+    //public void DataLoad()
+    //{
+    //    db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
+    //    docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Data");
+    //    docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+    //    {
+    //        var snapshot = task.Result;
+    //        var Data = snapshot.ToDictionary();
+    //        level = TUtil.GetValue<int>(Data, FirebaseString.LEVEL);
+    //        exp = TUtil.GetValue<int>(Data, FirebaseString.EXP);
+    //        skillPoint = TUtil.GetValue<int>(Data, FirebaseString.SKILLPOINT);
+    //        atk = TUtil.GetValue<int>(Data, FirebaseString.ATK);
+    //        def = TUtil.GetValue<int> (Data, FirebaseString.DEF);
+    //        maxHp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
+    //        speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
+    //    });
+    //    docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
+    //    docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+    //    {
+    //        var snapshot = task.Result;
+    //        var Data = snapshot.ToDictionary();
+    //        skill1Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL1NUMBER);
+    //        skill2Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL2NUMBER);
+    //        skill3Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL3NUMBER);
+    //        skill1Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL1LV);
+    //        skill2Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL2LV);
+    //        skill3Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL3LV);
+    //    });
+    //}
 }

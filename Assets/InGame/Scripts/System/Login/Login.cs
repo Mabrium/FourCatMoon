@@ -27,36 +27,50 @@ public class Login : MonoBehaviour
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
         RememberYesNo = PlayerPrefs.GetInt("YesNo", RememberYesNo);
-        if(RememberYesNo == 1)
+        if (RememberYesNo == 1)
         {
             inputField[0].text = PlayerPrefs.GetString("ID");
-            inputField[1].text = PlayerPrefs.GetString ("PW");
+            inputField[1].text = PlayerPrefs.GetString("PW");
         }
     }
 
     private void UserSignUp()
     {
-        docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
-        Dictionary<string, object> UserData = new()
+        if (!manager.internetCheck)
         {
-            { FirebaseString.UserID, userID },
-            { FirebaseString.Password, password }
-        };
-        docRef.SetAsync(UserData).ContinueWithOnMainThread(task => {
-            if (task.IsFaulted || task.IsCanceled)
+            Debug.Log("인터넷을 연결을 확인해주세요");
+        }
+        else
+        {
+            docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
+            Dictionary<string, object> UserData = new()
             {
-                Debug.LogError("Error writing Login: " + task.Exception);
-            }
-        });
+                { FirebaseString.UserID, userID },
+                { FirebaseString.Password, password }
+            };
+            docRef.SetAsync(UserData).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted || task.IsCanceled)
+                {
+                    Debug.LogError("Error writing Login: " + task.Exception);
+                }
+            });
+        }
     }
 
     public void UserLogin()
     {
+        if (!manager.internetCheck)
+        {
+            Debug.Log("인터넷 연결을 확인해주세요");
+            return;
+        }
         IDPW();
         string readID;
         string readPW;
         docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
-        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
+        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+        {
             if (task.IsFaulted || task.IsCanceled)
             {
                 Debug.LogError("Error getting Login: " + task.Exception);
@@ -64,11 +78,14 @@ public class Login : MonoBehaviour
             else
             {
                 var snapshot = task.Result;
+
                 if (!snapshot.Exists)
                 {
                     Debug.Log("잘못 되었거나 없습니다");
                     return;
                 }
+
+
                 var Data = snapshot.ToDictionary();
                 readID = TUtil.GetValue<string>(Data, FirebaseString.UserID);
                 readPW = TUtil.GetValue<string>(Data, FirebaseString.Password);
@@ -79,9 +96,10 @@ public class Login : MonoBehaviour
                     LoadID();
                     SceneManager.LoadScene(mainScene);
                 }
-                else if(userID != readID || password != readPW)
+                else if (userID != readID || password != readPW)
                 {
                     Debug.Log("다름");
+                    return;
                 }
             }
         });
@@ -95,10 +113,16 @@ public class Login : MonoBehaviour
 
     public void IDCheck()
     {
+        if (!manager.internetCheck)
+        {
+            Debug.Log("인터넷 연결을 확인해주세요");
+            return;
+        }
         string readID;
         IDPW();
         docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
-        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
+        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+        {
             var snapshot = task.Result;
             if (!snapshot.Exists)
             {

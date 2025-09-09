@@ -1,3 +1,4 @@
+using BackEnd.Quobject.SocketIoClientDotNet.Client;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class Manager : MonoBehaviour
 {
     public static Manager Instance;
     public static string userID;
+    public bool internetCheck;
+
+    private NetworkReachability prevReachability;
 
     private Stack<string> sceneHistory = new Stack<string>();
 
@@ -15,7 +19,7 @@ public class Manager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시 파괴 방지
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -23,6 +27,33 @@ public class Manager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        var currentReachability = Application.internetReachability;
+
+        if (currentReachability != prevReachability)
+        {
+            internetCheck = currentReachability != NetworkReachability.NotReachable;
+            OnInternetStatusChanged(internetCheck);
+            prevReachability = currentReachability;
+        }
+    }
+
+    private void OnInternetStatusChanged(bool isConnected)
+    {
+        if (!isConnected)
+        {
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                SceneManager.LoadScene(0);
+            }
+            Debug.Log("인터넷 연결이 끊어졌습니다.");
+        }
+        else
+        {
+            Debug.Log("인터넷이 연결되었습니다.");
+        }
+    }
 
     #region 씬
     /// <summary>

@@ -21,7 +21,7 @@ public static class TUtil
         else
         {
             // 키가 없을 경우 경고 메시지 출력
-            Debug.LogWarning($"Key {key} not found in Firestore data.");
+            Debug.LogWarning($"{key} 키를 찾지 못했습니다");
         }
         return default(T); // 기본값 반환 (값이 없거나 변환 실패 시)
     }
