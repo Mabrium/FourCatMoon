@@ -1,14 +1,20 @@
 using BackEnd.Quobject.SocketIoClientDotNet.Client;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
+
     public static string userID;
     public bool internetCheck;
+    [SerializeField] private bool firstInternetCheck;
+
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private TextMeshProUGUI internetTMP;
 
     private NetworkReachability prevReachability;
 
@@ -47,12 +53,42 @@ public class Manager : MonoBehaviour
             {
                 SceneManager.LoadScene(0);
             }
-            Debug.Log("인터넷 연결이 끊어졌습니다.");
+            //Debug.Log("인터넷 연결이 끊어졌습니다.");
+            StartCoroutine(InternetCheckUI(2.5f, 0.5f, internetCheck));
         }
         else
         {
-            Debug.Log("인터넷이 연결되었습니다.");
+            if (firstInternetCheck)
+            {
+                //Debug.Log("인터넷이 연결되었습니다.");
+                StartCoroutine(InternetCheckUI(1.0f, 0.5f, internetCheck));
+            }
+            else
+            {
+                firstInternetCheck = true;
+                return;
+            }
+
         }
+    }
+
+
+    private IEnumerator InternetCheckUI(float showTime, float hideTime, bool internet)
+    {
+        float time = 0;
+        if (internet) internetTMP.text = "네트워크 연결됨";
+        else internetTMP.text = "네트워크를 확인해주세요";
+        canvasGroup.alpha = 1;
+        yield return new WaitForSeconds(showTime);
+
+        while (time < hideTime)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.Clamp01(time / hideTime);
+            canvasGroup.alpha = Mathf.Lerp(1, 0, t);
+            yield return null;
+        }
+        canvasGroup.alpha = 0;
     }
 
     #region 씬

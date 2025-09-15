@@ -38,7 +38,7 @@ public class Login : MonoBehaviour
     {
         if (!manager.internetCheck)
         {
-            Debug.Log("인터넷을 연결을 확인해주세요");
+            Debug.Log("인터넷 연결을 확인해주세요");
         }
         else
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3714659252065353353}
   - component: {fileID: 49045766134593120}
   m_Layer: 0
-  m_Name: TestVoidObject
+  m_Name: CatsDataObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

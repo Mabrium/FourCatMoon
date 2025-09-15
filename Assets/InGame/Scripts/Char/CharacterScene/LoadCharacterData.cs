@@ -4,7 +4,6 @@ using Firebase.Firestore;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class LoadCharacterData : MonoBehaviour
@@ -13,14 +12,16 @@ public class LoadCharacterData : MonoBehaviour
     private DocumentReference docRef;
     //[SerializeField] private UsingCat characterDataSTO;
     //[SerializeField] private SkillText skillTextSTO;
-    [SerializeField] private GameObject testVoid;
+    [SerializeField] private GameObject Cats;
+    [SerializeField] private GameObject SkillUI;
+    [SerializeField] private GameObject StatUI;
 
     [SerializeField] private TextMeshProUGUI[] tmp;
     //[SerializeField] private string patName;
     public List<CharacterData> myCharacters = new List<CharacterData>();
 
     [SerializeField] private int catNumberCount;
-    [SerializeField] private int catPageNumber = 1;
+    [SerializeField] private int catPageNumber = 0;
 
     void Start()
     {
@@ -48,9 +49,9 @@ public class LoadCharacterData : MonoBehaviour
             foreach (var charC in snapshot.Documents)
             {
                 var localPatName = charC.Id;
-                
+
                 DataLoad(localPatName);
-                Debug.Log(localPatName);
+                //Debug.Log(localPatName);
             }
         });
     }
@@ -67,11 +68,10 @@ public class LoadCharacterData : MonoBehaviour
 
             for (int i = 1; i < characterCount + 1; i++)
             {
-                testVoid = Instantiate(testVoid, transform.position, Quaternion.identity);
-                CharacterData characterData = testVoid.GetComponent<CharacterData>();
-                
+                Cats = Instantiate(Cats, transform.position, Quaternion.identity);
+                CharacterData characterData = Cats.GetComponent<CharacterData>();
+
                 characterData.characterNumber = catNumberCount;
-                ;
 
                 docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + i).Document(patName + i + "Data");
                 docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
@@ -105,14 +105,14 @@ public class LoadCharacterData : MonoBehaviour
                 });
                 myCharacters.Add(characterData);
                 catNumberCount++;
+                //여기에 만약 다 불러왔다면 TMPChange시키는거 만들기
             }
         });
-        
     }
 
     public void RightCat()
     {
-        if (catPageNumber < catNumberCount)
+        if (catPageNumber < catNumberCount - 1)
         {
             catPageNumber++;
             TMPChange();
@@ -130,11 +130,73 @@ public class LoadCharacterData : MonoBehaviour
         else return;
     }
 
+
     private void TMPChange()
     {
+        Debug.Log("불러옴");
         tmp[0].text = myCharacters[catPageNumber].atk.ToString();
+        Debug.Log(tmp[0].text);
         tmp[1].text = myCharacters[catPageNumber].def.ToString();
+        Debug.Log(tmp[1].text);
         tmp[2].text = myCharacters[catPageNumber].maxHp.ToString();
+        Debug.Log(tmp[2].text);
         tmp[3].text = myCharacters[catPageNumber].speed.ToString();
+        Debug.Log(tmp[3].text);
+        PatNameTranslate();
     }
+
+    private void PatNameTranslate()
+    {
+        string pName = "Cat";
+        switch (myCharacters[catPageNumber].patName)
+        {
+            case FirebaseString.BloodMoonCat:
+                pName = "적월";
+                break;
+            case FirebaseString.BlueMoonCat:
+                pName = "청월";
+                break;
+            case FirebaseString.FullMoonCat:
+                pName = "만월";
+                break;
+            case FirebaseString.LunarEclipseCat:
+                pName = "월식";
+                break;
+            case FirebaseString.SBBMoonCat:
+                pName = "슈퍼블러드블루문";
+                break;
+            case FirebaseString.SolarEclipseCat:
+                pName = "일식";
+                break;
+            case FirebaseString.SuperMoonCat:
+                pName = "슈퍼문";
+                break;
+        }
+        tmp[4].text = pName;
+    }
+
+
+    #region UI 보이기
+
+    public void ShowSkillUI()
+    {
+        SkillUI.SetActive(true);
+    }
+
+    public void HideSkillUI()
+    {
+        SkillUI.SetActive(false);
+    }
+
+    public void ShowStatUI()
+    {
+        StatUI.SetActive(true);
+    }
+
+    public void HideStatUI()
+    {
+        StatUI.SetActive(false);
+    }
+    #endregion
+
 }
