@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class FirebaseString
 {
     //Firebase에 들어갈 데이터 이름 - 데이터 경로 용도

@@ -1,7 +1,6 @@
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,10 +12,12 @@ public class LoadCharacterData : MonoBehaviour
     //[SerializeField] private UsingCat characterDataSTO;
     //[SerializeField] private SkillText skillTextSTO;
     [SerializeField] private GameObject Cats;
-    [SerializeField] private GameObject SkillUI;
+    [SerializeField] private GameObject SkillUI1;
+    [SerializeField] private GameObject SkillUI2;
     [SerializeField] private GameObject StatUI;
 
     [SerializeField] private TextMeshProUGUI[] tmp;
+    [SerializeField] private TextMeshProUGUI[] statTmp;
     //[SerializeField] private string patName;
     public List<CharacterData> myCharacters = new List<CharacterData>();
 
@@ -27,11 +28,6 @@ public class LoadCharacterData : MonoBehaviour
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
         LoadData();
-    }
-
-    void Update()
-    {
-
     }
 
     private void LoadData()
@@ -51,9 +47,9 @@ public class LoadCharacterData : MonoBehaviour
                 var localPatName = charC.Id;
 
                 DataLoad(localPatName);
-                //Debug.Log(localPatName);
             }
         });
+        TMPChange();
     }
 
     private void DataLoad(string patName)
@@ -105,7 +101,6 @@ public class LoadCharacterData : MonoBehaviour
                 });
                 myCharacters.Add(characterData);
                 catNumberCount++;
-                //여기에 만약 다 불러왔다면 TMPChange시키는거 만들기
             }
         });
     }
@@ -133,15 +128,23 @@ public class LoadCharacterData : MonoBehaviour
 
     private void TMPChange()
     {
-        Debug.Log("불러옴");
+        //Debug.Log("불러옴");
         tmp[0].text = myCharacters[catPageNumber].atk.ToString();
-        Debug.Log(tmp[0].text);
+        statTmp[0].text = myCharacters[catPageNumber].atk.ToString();
+        //Debug.Log(tmp[0].text);
         tmp[1].text = myCharacters[catPageNumber].def.ToString();
-        Debug.Log(tmp[1].text);
+        statTmp[1].text = myCharacters[catPageNumber].def.ToString();
+        //Debug.Log(tmp[1].text);
         tmp[2].text = myCharacters[catPageNumber].maxHp.ToString();
-        Debug.Log(tmp[2].text);
+        statTmp[2].text = myCharacters[catPageNumber].maxHp.ToString();
+        //Debug.Log(tmp[2].text);
         tmp[3].text = myCharacters[catPageNumber].speed.ToString();
-        Debug.Log(tmp[3].text);
+        statTmp[3].text = myCharacters[catPageNumber].speed.ToString();
+        //Debug.Log(tmp[3].text);
+        statTmp[4].text = myCharacters[catPageNumber].showLevel.ToString();
+        statTmp[5].text = myCharacters[catPageNumber].skill2Lv.ToString();
+        statTmp[6].text = myCharacters[catPageNumber].skill2Lv.ToString();
+        statTmp[7].text = myCharacters[catPageNumber].skill3Lv.ToString();
         PatNameTranslate();
     }
 
@@ -173,6 +176,12 @@ public class LoadCharacterData : MonoBehaviour
                 break;
         }
         tmp[4].text = pName;
+        statTmp[4].text = pName;
+    }
+
+    public void SelectCat()
+    {
+        Manager.Instance.SetPlayerCat(myCharacters[catPageNumber]);
     }
 
 
@@ -180,12 +189,13 @@ public class LoadCharacterData : MonoBehaviour
 
     public void ShowSkillUI()
     {
-        SkillUI.SetActive(true);
+        SkillUI1.SetActive(true);
     }
 
     public void HideSkillUI()
     {
-        SkillUI.SetActive(false);
+        SkillUI1.SetActive(false);
+        SkillUI2.SetActive(false);
     }
 
     public void ShowStatUI()
@@ -198,5 +208,4 @@ public class LoadCharacterData : MonoBehaviour
         StatUI.SetActive(false);
     }
     #endregion
-
 }

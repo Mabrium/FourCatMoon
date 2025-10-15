@@ -15,7 +15,7 @@ public class GachaManager : MonoBehaviour
 
     private GameObject cat;
     public GameObject[] prefabObject;
-    public GameObject alpha;
+    //public GameObject alpha;
     [SerializeField] private RectTransform rectTransform;
 
     public List<CharacterSpawner> spawners = new List<CharacterSpawner>();
@@ -169,7 +169,7 @@ public class GachaManager : MonoBehaviour
 
     public void TouchCard()
     {
-        alpha.SetActive(!alpha.activeSelf);
+        //alpha.SetActive(!alpha.activeSelf);
     }
 
 }

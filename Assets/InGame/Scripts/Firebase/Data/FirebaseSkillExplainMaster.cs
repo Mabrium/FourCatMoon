@@ -5,11 +5,14 @@ using UnityEngine;
 using Firebase;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using TMPro;
 
 public class FirebaseSkillExplainMaster : MonoBehaviour
 {
     private FirebaseFirestore db;
     private DocumentReference docRef;
+
+    [SerializeField] private TextMeshProUGUI tmp;
 
     public enum CatType
     {
@@ -50,8 +53,10 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
             {FirebaseString.SKILL1EXPLAIN, skillExplainText }
         };
         docRef.SetAsync(SkillData).ContinueWithOnMainThread(task => { });
-        Debug.Log(FirebaseString.DBCharacterSkill + "\n" + catType.ToString() + "\n" + FirebaseString.DBCharacterSkillExplain + "\n" + skillNumber.ToString());
+        Debug.Log(catType.ToString() + "\n" + skillNumber.ToString());
         Debug.Log(skillExplainText);
+        
+        tmp.text = (catType.ToString() + "\n" + skillNumber.ToString() + "\n" + skillExplainText);
     }
 
 

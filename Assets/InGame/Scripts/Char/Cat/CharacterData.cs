@@ -1,6 +1,5 @@
 using UnityEngine;
 
-using System;
 using System.Collections.Generic;
 
 using Firebase;
@@ -9,29 +8,32 @@ using Firebase.Extensions;
 
 public class CharacterData : MonoBehaviour
 {
+    private FirebaseFirestore db;
+    DocumentReference docRef;
+
     [Header("NUMBER")]
     public int characterNumber;
 
     [Header("NAME")]
     public string patName;
 
-    [Space(4f)]
-    private FirebaseFirestore db;
-    DocumentReference docRef;
-
     [Header("Statistics")]
     [SerializeField] private int level = 1;
+
     public int showLevel
     {
         get => level;
         set => level = value;
     }
+
     [SerializeField] private int exp;
+
     public int showExp
     {
         get => exp;
         set => exp = value;
     }
+
     public int atk;
     public int def;
     public int maxHp;
@@ -50,8 +52,10 @@ public class CharacterData : MonoBehaviour
     private int[] skillPointLevel = { 5, 10, 30 };
     private int[] upExp = { 10, 20, 40, 80, 140, 220, 320, 450, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700 };
 
-    
+    public int damage;
+    public int skillDamageValue;
 
+    //아직 레벨링을 했을 때 레벨이 같으면 중복으로 작동되는걸 안 막았음
     public void Leveling(int expValue)
     {
         exp += expValue;
@@ -69,6 +73,8 @@ public class CharacterData : MonoBehaviour
             if(level == 20)
             {
                 //3레벨 스킬 배우기
+                skill3Number = Random.Range(1, 4);
+                skill3Lv = 1;
             }
         }
         if (level == 30)
@@ -77,18 +83,18 @@ public class CharacterData : MonoBehaviour
         }
     }
 
-    protected void Skill1()
+    public void Skill1()
     {
         switch (skill1Number)
         {
-            case 0: break;//없음
+            case 0: break; //없음
             case 1: Skill1_1(); break;
             case 2: Skill1_2(); break;
             case 3: Skill1_3(); break;
         }
     }
 
-    protected void Skill2()
+    public void Skill2()
     {
         switch (skill2Number)
         {
@@ -99,7 +105,7 @@ public class CharacterData : MonoBehaviour
         }
     }
 
-    protected void Skill3()
+    public void Skill3()
     {
         switch (skill3Number)
         {
@@ -210,33 +216,4 @@ public class CharacterData : MonoBehaviour
         docRef.SetAsync(characterSkill).ContinueWithOnMainThread(task => { });
     }
 
-    //public void DataLoad()
-    //{
-    //    db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-    //    docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Data");
-    //    docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
-    //    {
-    //        var snapshot = task.Result;
-    //        var Data = snapshot.ToDictionary();
-    //        level = TUtil.GetValue<int>(Data, FirebaseString.LEVEL);
-    //        exp = TUtil.GetValue<int>(Data, FirebaseString.EXP);
-    //        skillPoint = TUtil.GetValue<int>(Data, FirebaseString.SKILLPOINT);
-    //        atk = TUtil.GetValue<int>(Data, FirebaseString.ATK);
-    //        def = TUtil.GetValue<int> (Data, FirebaseString.DEF);
-    //        maxHp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
-    //        speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
-    //    });
-    //    docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
-    //    docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
-    //    {
-    //        var snapshot = task.Result;
-    //        var Data = snapshot.ToDictionary();
-    //        skill1Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL1NUMBER);
-    //        skill2Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL2NUMBER);
-    //        skill3Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL3NUMBER);
-    //        skill1Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL1LV);
-    //        skill2Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL2LV);
-    //        skill3Lv = TUtil.GetValue<int>(Data, FirebaseString.SKILL3LV);
-    //    });
-    //}
 }

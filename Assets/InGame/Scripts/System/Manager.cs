@@ -10,11 +10,18 @@ public class Manager : MonoBehaviour
     public static Manager Instance;
 
     public static string userID;
-    public bool internetCheck;
-    [SerializeField] private bool firstInternetCheck;
 
+    [SerializeField] private BattleCat playerCat;
+
+    [Header("Internet")]
+    public bool internetCheck;
+    private bool firstInternetCheck;
+
+    [Header("UI")]
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TextMeshProUGUI internetTMP;
+    [Space(10)]
+    [SerializeField] private Animator fadeAnimator;
 
     private NetworkReachability prevReachability;
 
@@ -45,6 +52,15 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public void SetPlayerCat(CharacterData selectCharacter)
+    {
+        playerCat.charData = selectCharacter;
+        playerCat.LoadCharacterData();
+    }
+
+
+
+    #region 인터넷
     private void OnInternetStatusChanged(bool isConnected)
     {
         if (!isConnected)
@@ -90,6 +106,7 @@ public class Manager : MonoBehaviour
         }
         canvasGroup.alpha = 0;
     }
+    #endregion
 
     #region 씬
     /// <summary>
@@ -102,6 +119,15 @@ public class Manager : MonoBehaviour
         sceneHistory.Push(currentScene);
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadSceneAsync(string sceneName)
+    {
+        // 현재 씬 이름 저장
+        string currentScene = SceneManager.GetActiveScene().name;
+        sceneHistory.Push(currentScene);
+
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     /// <summary>
@@ -120,6 +146,15 @@ public class Manager : MonoBehaviour
             Application.Quit();
 
         }
+    }
+
+    public IEnumerator Fade()
+    {
+        fadeAnimator.SetBool("Fade", true);
+        var clips = fadeAnimator.runtimeAnimatorController.animationClips;
+        float fadeTime = clips.Length;
+        yield return new WaitForSeconds(fadeTime);
+        fadeAnimator.SetBool("Fade", false);
     }
     #endregion
 }

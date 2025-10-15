@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +26,9 @@ public class CharacterSpawner : MonoBehaviour
         characterData.def = Random.Range(4, 6);
         characterData.maxHp = Random.Range(23, 25);
         characterData.speed = Random.Range(10, 12);
+        characterData.skill1Lv = 1;
+        characterData.skill2Lv = 1;
+        characterData.skill3Lv = 0;
         characterData.skill1Number = Random.Range(1, 4);
         characterData.skill2Number = Random.Range(1, 4);
         characterData.skill3Number = 0;

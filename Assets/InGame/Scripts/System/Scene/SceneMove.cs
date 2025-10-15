@@ -6,7 +6,14 @@ public class SceneMove : MonoBehaviour
 {
     public void SceneMoveInstall(string SceneName)
     {
-        Manager.Instance.LoadScene(SceneName);
+        if (SceneName.Equals("CharacterScene"))
+        {
+            Manager.Instance.LoadSceneAsync(SceneName);
+        }
+        else
+        {
+            Manager.Instance.LoadScene(SceneName);
+        }
     }
 
     public void BackScene()

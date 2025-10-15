@@ -27,7 +27,8 @@ public class SolarEclipseCat : CharacterData
 
     protected override void Skill1_1()
     {
-
+        skillDamageValue = atk * (int)(210 * 0.01f);
+        speed += speed * 0.1f;
     }
 
     protected override void Skill1_2()
