@@ -3,14 +3,15 @@ using Firebase.Extensions;
 using Firebase.Firestore;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class LoadCharacterData : MonoBehaviour
 {
     private FirebaseFirestore db;
     private DocumentReference docRef;
-    //[SerializeField] private UsingCat characterDataSTO;
-    //[SerializeField] private SkillText skillTextSTO;
+    private const string Skill = "Skill";
+
     [SerializeField] private GameObject Cats;
     [SerializeField] private GameObject SkillUI1;
     [SerializeField] private GameObject SkillUI2;
@@ -18,7 +19,8 @@ public class LoadCharacterData : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI[] tmp;
     [SerializeField] private TextMeshProUGUI[] statTmp;
-    //[SerializeField] private string patName;
+    [SerializeField] private TextMeshProUGUI[] skillTextTmp;
+
     public List<CharacterData> myCharacters = new List<CharacterData>();
 
     [SerializeField] private int catNumberCount;
@@ -142,10 +144,11 @@ public class LoadCharacterData : MonoBehaviour
         statTmp[3].text = myCharacters[catPageNumber].speed.ToString();
         //Debug.Log(tmp[3].text);
         statTmp[4].text = myCharacters[catPageNumber].showLevel.ToString();
-        statTmp[5].text = myCharacters[catPageNumber].skill2Lv.ToString();
+        statTmp[5].text = myCharacters[catPageNumber].skill1Lv.ToString();
         statTmp[6].text = myCharacters[catPageNumber].skill2Lv.ToString();
         statTmp[7].text = myCharacters[catPageNumber].skill3Lv.ToString();
         PatNameTranslate();
+        SkillExplainChangeTMP(myCharacters[catPageNumber]);
     }
 
     private void PatNameTranslate()
@@ -176,8 +179,53 @@ public class LoadCharacterData : MonoBehaviour
                 break;
         }
         tmp[4].text = pName;
-        statTmp[4].text = pName;
+        statTmp[8].text = pName;
     }
+
+
+    private void SkillExplainChangeTMP(CharacterData characterData)
+    {
+        string test = "null";
+        for (int i = 1; i < 4; i++)
+        {
+            string sSkillNumber = Skill + i;
+            string sSkillDashNumber = "null";
+
+            switch (i)
+            {
+                case 1: sSkillDashNumber = characterData.skill1Number.ToString(); break;
+                case 2: sSkillDashNumber = characterData.skill2Number.ToString(); break;
+                case 3: sSkillDashNumber = characterData.skill3Number.ToString(); break;
+            }
+            if (sSkillDashNumber == "0")
+            {
+                skillTextTmp[i - 1].text = "아직 스킬을 배우지 않았습니다";
+            }
+
+            DocumentReference document = db.Collection(FirebaseString.DBCharacterSkill).Document(myCharacters[catPageNumber].patName).Collection(sSkillNumber).Document(sSkillDashNumber);
+            document.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task4 =>
+            {
+                if (task4.IsFaulted || task4.IsCanceled)
+                {
+                    Debug.LogError("Error getting Login: " + task4.Exception);
+                }
+                else
+                {
+                    var snapshot4 = task4.Result;
+                    if (!snapshot4.Exists)
+                    {
+                        Debug.Log("잘못 되었거나 없습니다");
+                        return;
+                    }
+                    var Data4 = snapshot4.ToDictionary();
+
+                    test = TUtil.GetValue<string>(Data4, FirebaseString.SKILLEXPLAIN);
+                }
+            });
+            skillTextTmp[i - 1].text = test;
+        }
+    }
+
 
     public void SelectCat()
     {

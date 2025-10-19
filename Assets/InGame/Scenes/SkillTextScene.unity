@@ -154,8 +154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmp: {fileID: 1637252761}
   catType: 0
-  skillNumber: 2
-  skillExplainText: strong
+  skillNumber: 0
+  Skill_Number: 3
+  skillExplainText: "\uB2E4\uC74C \uC790\uC2E0\uC758 \uCC28\uB840\uC5D0 \uD589\uB3D9\uC744
+    \uBABB\uD558\uB294 \uB300\uC2E0 \uC790\uC2E0\uC758 2\uBC88\uC758 \uCC28\uB840\uB3D9\uC548
+    \uC18D\uB3C4\uAC00 50 \uC99D\uAC00 \uC2DC\uD0B4"
 --- !u!4 &669301672
 Transform:
   m_ObjectHideFlags: 0

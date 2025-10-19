@@ -1374,7 +1374,7 @@ GameObject:
   - component: {fileID: 310824494}
   - component: {fileID: 310824493}
   m_Layer: 5
-  m_Name: Button
+  m_Name: 2 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,7 +2043,7 @@ GameObject:
   - component: {fileID: 428453874}
   - component: {fileID: 428453873}
   m_Layer: 5
-  m_Name: Skill Text
+  m_Name: 2 Skill Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3605,6 +3605,11 @@ MonoBehaviour:
   - {fileID: 658317478}
   - {fileID: 887650928}
   - {fileID: 1842959813}
+  - {fileID: 1570287270}
+  skillTextTmp:
+  - {fileID: 1100824460}
+  - {fileID: 428453873}
+  - {fileID: 947249401}
   myCharacters: []
   catNumberCount: 0
   catPageNumber: 0
@@ -3620,7 +3625,7 @@ GameObject:
   - component: {fileID: 829358991}
   - component: {fileID: 829358990}
   m_Layer: 5
-  m_Name: SELECT SKILL
+  m_Name: 3 SKILL NAME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3914,7 +3919,7 @@ GameObject:
   - component: {fileID: 947249402}
   - component: {fileID: 947249401}
   m_Layer: 5
-  m_Name: Skill Text
+  m_Name: 3 Skill Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4726,7 +4731,7 @@ GameObject:
   - component: {fileID: 1100824461}
   - component: {fileID: 1100824460}
   m_Layer: 5
-  m_Name: Skill Text
+  m_Name: 1 Skill Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5069,7 +5074,7 @@ GameObject:
   - component: {fileID: 1137428501}
   - component: {fileID: 1137428500}
   m_Layer: 5
-  m_Name: SELECT SKILL
+  m_Name: 2 SKILL NAME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7601,7 +7606,7 @@ GameObject:
   - component: {fileID: 1708020369}
   - component: {fileID: 1708020368}
   m_Layer: 5
-  m_Name: Button
+  m_Name: 1 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8542,7 +8547,7 @@ GameObject:
   - component: {fileID: 1962930022}
   - component: {fileID: 1962930021}
   m_Layer: 5
-  m_Name: Button
+  m_Name: 3 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9022,7 +9027,7 @@ GameObject:
   - component: {fileID: 2031239170}
   - component: {fileID: 2031239169}
   m_Layer: 5
-  m_Name: SELECT SKILL
+  m_Name: 1 SKILL NAME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

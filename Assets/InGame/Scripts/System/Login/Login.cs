@@ -38,7 +38,7 @@ public class Login : MonoBehaviour
     {
         if (!manager.internetCheck)
         {
-            Debug.Log("인터넷 연결을 확인해주세요");
+            //Debug.Log("인터넷 연결을 확인해주세요");
         }
         else
         {
@@ -81,7 +81,7 @@ public class Login : MonoBehaviour
 
                 if (!snapshot.Exists)
                 {
-                    Debug.Log("잘못 되었거나 없습니다");
+                    //Debug.Log("잘못 되었거나 없습니다");
                     return;
                 }
 
@@ -92,13 +92,13 @@ public class Login : MonoBehaviour
 
                 if (userID == readID && password == readPW)
                 {
-                    Debug.Log("같음");
+                    //Debug.Log("같음");
                     LoadID();
                     SceneManager.LoadScene(mainScene);
                 }
                 else if (userID != readID || password != readPW)
                 {
-                    Debug.Log("다름");
+                    //Debug.Log("다름");
                     return;
                 }
             }
@@ -115,7 +115,7 @@ public class Login : MonoBehaviour
     {
         if (!manager.internetCheck)
         {
-            Debug.Log("인터넷 연결을 확인해주세요");
+            //Debug.Log("인터넷 연결을 확인해주세요");
             return;
         }
         string readID;
@@ -132,7 +132,7 @@ public class Login : MonoBehaviour
             readID = TUtil.GetValue<string>(Data, FirebaseString.UserID);
             if (userID == readID)
             {
-                Debug.Log("안돼");
+                //Debug.Log("안돼");
             }
         });
 
