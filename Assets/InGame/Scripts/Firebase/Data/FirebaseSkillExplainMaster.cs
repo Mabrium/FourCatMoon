@@ -31,35 +31,36 @@ public class FirebaseSkillExplainMaster : MonoBehaviour
         SBBMoonCat,
     }
 
-    public enum SkillNumber
-    {
-        Skill1,
-        Skill2,
-        Skill3,
-    }
+    public string test = "BloodMoonCat";
+    public string skill = "Skill1";
+    public string skillNumber = "1";
 
-
-
-    public CatType catType;
-    public SkillNumber skillNumber;
-    [Range(1, 3)]
-    public int Skill_Number;
-    [Space(10)]
+    public string skillName;
     public string skillExplainText;
+
+    private void Start()
+    {
+        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
+    }
 
     public void UpdateSkillExplain()
     {
-        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.DBCharacterSkill).Document(catType.ToString()).Collection(skillNumber.ToString()).Document(Skill_Number.ToString());
+        docRef = db.Collection(FirebaseString.DBCharacterSkill).Document(test).Collection(skill).Document(skillNumber);
         Dictionary<string, object> SkillData = new()
         {
+            {FirebaseString.SKILLNAME, skillName},
             {FirebaseString.SKILLEXPLAIN, skillExplainText}
         };
-        docRef.SetAsync(SkillData).ContinueWithOnMainThread(task => { });
-        Debug.Log(catType.ToString() + "\n" + skillNumber.ToString() + Skill_Number);
-        Debug.Log(skillExplainText);
-        
-        tmp.text = (catType.ToString() + "\n" + skillNumber.ToString() + Skill_Number + "\n" + skillExplainText);
+        docRef.SetAsync(SkillData).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                Debug.LogError("Error writing Login: " + task.Exception);
+            }
+        });
+
+        tmp.text = test + " " + skill + " " + skillNumber + 
+            "\n" + skillName + " " + skillExplainText;
     }
 
 

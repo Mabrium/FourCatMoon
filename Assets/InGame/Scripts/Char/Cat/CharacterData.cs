@@ -52,6 +52,19 @@ public class CharacterData : MonoBehaviour
     private int[] skillPointLevel = { 5, 10, 30 };
     private int[] upExp = { 10, 20, 40, 80, 140, 220, 320, 450, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700 };
 
+    //스킬 강화했을 때 배열에 알맞게 맞춰줘서 값을 얻을 int
+    public int skill1FigureI = 0;
+    public int skill2FigureI = 0;
+    public int skill3FigureI = 0;
+    //스킬 강화하면 늘어날 계수들을 넣는 배열
+    protected int[] skill1Figure;
+    protected int[] skill2Figure;
+    protected int[] skill3Figure;
+    //스킬 강화할 때에 바뀔 값
+    public int skill1FigureValue;
+    public int skill2FigureValue;
+    public int skill3FigureValue;
+
     public int damage;
     public int skillDamageValue;
 
@@ -73,8 +86,8 @@ public class CharacterData : MonoBehaviour
             if(level == 20)
             {
                 //3레벨 스킬 배우기
-                skill3Number = Random.Range(1, 4);
                 skill3Lv = 1;
+                skill3Number = Random.Range(1, 4);
             }
         }
         if (level == 30)
@@ -203,6 +216,7 @@ public class CharacterData : MonoBehaviour
             {FirebaseString.SPEED, speed}
         };
         docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
+
         docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
         Dictionary<string, object> characterSkill = new()
         {

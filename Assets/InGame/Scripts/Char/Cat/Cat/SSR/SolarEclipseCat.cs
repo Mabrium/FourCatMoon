@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SolarEclipseCat : CharacterData
 {
+    //protected 
+
     //ÀÏ½Ä
     void Start()
     {
