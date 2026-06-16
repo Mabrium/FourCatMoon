@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
-using UnityEditor.U2D.Animation;
+//using UnityEditor.U2D.Animation;
 using UnityEngine;
 using static FirebaseSkillExplainMaster;
 
